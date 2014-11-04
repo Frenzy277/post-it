@@ -1,8 +1,10 @@
 <p>
   <%= render @post.categories %>
+  (<%= link_to 'edit', edit_post_path(@post) %>)
 </p>
 <%= render 'shared/content_title', title: @post.title %>
 <p>
   <%= @post.description %>
+
 </p>
 <hr/>
