@@ -9,11 +9,11 @@ Due to primary key and foreign key relations. Data in relational database is org
 Structed Query Language.
 
 3) There are two predominant views into a relational database. What are they, and how are they different?
-Relations 1-to-many and many-to-many. These are relations between 2 tables where in 1:M - one record from parent table has many records in child table.
-M:M means 1 parent can have many children and in same time a children can have many parents. Usually the connection between M:M is done by a join table or model in Rails.
+data view - displays like spreadsheet
+schema view - displays like column names and their data types and constraints.
 
 4) In a table, what do we call the column that serves as the main identifier for a row of data? We're looking for the general database term, not the column name.
-Column, in database terminology, is referenced as a Field.
+Primary key
 
 
 5) What is a foreign key, and how is it used?
