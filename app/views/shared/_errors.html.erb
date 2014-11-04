@@ -1,0 +1,12 @@
+<% if object.errors.any? %>
+  <div class='row'>
+    <div class='alert alert-error span8'>
+      <p>There are some errors you need to fix:</p>
+      <ul>
+        <% object.errors.full_messages.each do |e| %>
+          <li><%= e %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>

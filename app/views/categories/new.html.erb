@@ -1,17 +1,6 @@
 <%= render 'shared/content_title', title: 'Create a new category' %>
 
-<% if @category.errors.any? %>
-  <div class='row'>
-    <div class='alert alert-error span8'>
-      <p>There are some errors you need to fix:</p>
-      <ul>
-        <% @category.errors.full_messages.each do |e| %>
-          <li><%= e %></li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-<% end %>
+<%= render 'shared/errors', object: @category %>
 
 
 <div class='well'>
