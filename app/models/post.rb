@@ -5,5 +5,6 @@ class Post < ActiveRecord::Base
   has_many :categories, through: :post_categories
 
   validates :title, :url, :description, presence: true
+  validates :title, uniqueness: { case_sensitive: false }
 
 end
