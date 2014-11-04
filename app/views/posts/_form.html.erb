@@ -1,4 +1,4 @@
-<%= render 'shared/errors', object: @post %>
+<%= render 'shared/errors', obj: @post %>
 
 <div class='well'>
   <%= form_for @post do |f| %>
@@ -15,10 +15,10 @@
 
     <div class='control-group'>
       <%= f.label :description %>
-      <%= f.text_area :description %>
+      <%= f.text_area :description, rows: 5 %>
     </div>
 
-    <%= f.submit class: "btn btn-primary" %>
+    <%= f.submit(@post.new_record? ? "Add Post" : "Edit Post",class: "span3 btn btn-primary") %>
   
   <% end %>
 </div>
