@@ -25,6 +25,6 @@
   <div class='well span8'>
     <em><%= comment.body %></em><br/>
     <span class="quiet">commented by</span> <%= comment.creator.try(:username) %>
-    <small>at <%= comment.created_at %></small>
+    <small>at <%= pretty_time(comment.created_at) %></small>
   </div>
 <% end %>

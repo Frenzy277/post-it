@@ -6,7 +6,7 @@
     <p><%= post.description %></p>
     <p>
       <span class="quiet">posted by</span> <%= post.creator.try(:username) %>
-      <small>at <%= post.created_at %></small>
+      <small>at <%= pretty_time(post.created_at) %></small>
     </p>
     <small>
       <span>
