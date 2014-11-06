@@ -24,16 +24,25 @@
   </ul>
 </div>
 
-<div class="nav_item">
-  <%= link_to new_post_path, class: 'btn btn-info btn-small' do %>
-    <i class='icon-plus'></i>
-    Add Post
-  <% end %>
-</div>
+<% if logged_in? %>
+  <div class="nav_item">
+    <%= link_to new_post_path, class: 'btn btn-info btn-small' do %>
+      <i class='icon-plus'></i>
+      Add Post
+    <% end %>
+  </div>
 
-<div class="nav_item">
-  <%= link_to 'Registration', register_path, class: 'btn' %>
-</div>
-<div class="nav_item">
-  <%= link_to 'Log in', login_path, class: 'btn' %>
-</div>
+  <div class="nav_item">
+    <%= link_to 'Log out', logout_path, class: 'btn' %>
+  </div>  
+<% else %>
+  <div class="nav_item">
+    <%= link_to 'Register', register_path, class: 'btn' %>
+  </div>
+
+  <div class="nav_item">
+    <%= link_to 'Log in', login_path, class: 'btn' %>
+  </div>
+<% end %>
+
+
