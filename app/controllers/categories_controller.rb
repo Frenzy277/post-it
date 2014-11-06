@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  before_action :require_user, except: [:show]
 
   def new
     @category = Category.new
@@ -18,5 +19,4 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
   end
-
 end
