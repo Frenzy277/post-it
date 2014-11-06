@@ -7,15 +7,16 @@
   <%= @post.description %>
 </p>
 <hr/>
+<% if logged_in? %>
+  <%= render 'shared/errors', obj: @comment %>
+  <%= form_for [@post, @comment] do |f| %>
+    <div class='control-group'>
+      <%= f.label :body, "Leave a comment" %>
+      <%= f.text_area :body, rows: 3, class: "span4" %>
+    </div>
 
-<%= render 'shared/errors', obj: @comment %>
-<%= form_for [@post, @comment] do |f| %>
-  <div class='control-group'>
-    <%= f.label :body, "Leave a comment" %>
-    <%= f.text_area :body, rows: 3, class: "span4" %>
-  </div>
-
-  <%= f.submit "Add Comment", class: "btn btn-primary" %>
+    <%= f.submit "Add Comment", class: "btn btn-primary" %>
+  <% end %>
 <% end %>
 <hr/>
 
