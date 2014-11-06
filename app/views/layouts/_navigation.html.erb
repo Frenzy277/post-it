@@ -17,7 +17,7 @@
     <% if logged_in? %>
       <li class="divider"></li>
       <li>
-        <%= link_to(new_category_path) do %>
+        <%= link_to new_category_path do %>
           <i class='icon-plus'></i>
           Add Category
         <% end %>
@@ -34,9 +34,33 @@
     <% end %>
   </div>
 
-  <div class="nav_item">
-    <%= link_to 'Log out', logout_path, class: 'btn' %>
-  </div>  
+  <div class="btn-group nav_item">
+    <%= link_to '#', class: 'btn btn-small dropdown-toggle', 'data-toggle' => 'dropdown' do %>
+      <%= current_user.username %> <span class='caret'></span>
+    <% end %>
+
+    <ul class="dropdown-menu">
+      <li>
+        <%= link_to edit_user_path(current_user) do %>
+          <i class='icon-edit'></i>
+          Edit Profile
+        <% end %>
+      </li>
+      <li>
+        <%= link_to user_path(current_user) do %>
+          <i class='icon-user'></i>
+          View Profile
+        <% end %>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <%= link_to logout_path do %>
+          <i class='icon-off'></i>
+          Log out
+        <% end %>
+      </li>
+    </ul>
+  </div>
 <% else %>
   <div class="nav_item">
     <%= link_to 'Register', register_path, class: 'btn' %>
