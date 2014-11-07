@@ -28,6 +28,7 @@ We can hide them the form for a new comment by encapsulating it with an if state
 <% if logged_in? %>
   ...comment form...
 <% end %>
+Also we need to use before_action in our controller to require login prior posting comment.
 
 where logged_in? is a helper method, checking on an existance of current_user.
 
