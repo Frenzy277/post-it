@@ -13,4 +13,12 @@ class CommentsController < ApplicationController
       render 'posts/show'
     end
   end
+
+
+  def vote
+    comment = Comment.find(params[:id])
+    vote = Vote.create(vote: params[:vote], creator: current_user, voteable: comment)
+    flash[:notice] = "Your vote was counted."
+    redirect_to :back
+  end
 end
