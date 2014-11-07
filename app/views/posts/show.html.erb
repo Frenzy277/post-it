@@ -1,6 +1,8 @@
 <p>
   <%= render @post.categories %>
-  <div class='pull-right'>(<%= link_to 'edit', edit_post_path(@post) %>)</div>
+  <% if logged_in? && current_user == @post.creator %>
+    <div class='pull-right'>(<%= link_to 'edit', edit_post_path(@post) %>)</div>
+  <% end %>
 </p>
 <%= render 'shared/content_title', title: @post.title %>
 <p>
