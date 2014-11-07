@@ -1,0 +1,84 @@
+Quiz: Lesson 3
+1) What's the difference between rendering and redirecting? What's the impact with regards to instance variables, view templates?
+Instance variables are lost when we redirect due to stalessness of HTTP. If we render a template we have access to ivars same as to errors on these ivar objects.
+Redirect issues another GET request, render is just to return HTML template.
+
+2) If I need to display a message on the view template, and I'm redirecting, what's the easiest way to accomplish this?
+The easiest way to achieve this is to use flash messages.
+flash[:notice] = "Some message"
+redirect_to some_url
+
+3) If I need to display a message on the view template, and I'm rendering, what's the easiest way to accomplish this?
+flash.now[:notice] = "Some message"
+or maybe to add message under an instance variable and then display that variable in a rendered template under if condition.
+
+4) Explain how we should save passwords to the database.
+Passwords are a sensitive type of information and thus they should not be stored as whole but they should be encrypted. In Rails, the easiest way to encrypt a password is to use bcrypt-ruby gem, that uses bcrypt algorhytm and also Salted hash.
+Then all we need to do is add 'has_secure_password' method to a model. By doing this, we get an access to :password virtual attribute, while in database we will need "password_digest" column type of string.
+
+5) What should we do if we have a method that is used in both controllers and views?
+We should use helper_method :method_name to let the method be avaiable in both controllers and views.
+
+6) What is memoization? How is it a performance optimization?
+memoization is a technique of caching instance variables (or data?) in order to not trigger SQL query to database consequently unless ivar is not set. If it is set then use what is set.
+f.e. @current_user ||= User.find(session[:user_id])
+
+7) If we want to prevent unauthenticated users from creating a new comment on a post, what should we do?
+We can hide them the form for a new comment by encapsulating it with an if statement.
+<% if logged_in? %>
+  ...comment form...
+<% end %>
+
+where logged_in? is a helper method, checking on an existance of current_user.
+
+8) Suppose we have the following table for tracking "likes" in our application. How can we make this table polymorphic? Note that the "user_id" foreign key is tracking who created the like.
+
+We have to let user_id column untouched. But we can see a pattern of redundant repetition of multiple likes
+on different classes/objects. To make this table polymorphic - we should remove all the photo_id, video_id, post_id columns and replace them with likeable_id (integer) and likeable_type (string). In model it will look like this:
+class Like < ActiveRecord::Base
+  belongs_to :user, foreign_key: user_id, class_name: 'User'
+  belongs_to :likeable, polymorphic: true
+end
+
+9) How do we set up polymorphic associations at the model layer? Give example for the polymorphic model (eg, Vote) as well as an example parent model (the model on the 1 side, eg, Post).
+
+at the model layer -
+class Vote < ActiveRecord::Base
+  belongs_to :user
+  belongs_to :voteable, polymorphic: true
+end
+
+class Post < ActiveRecord::Base
+  has_many :votes, as: :voteable
+end
+
+10) What is an ERD diagram, and why do we need it?
+ERD stands for "Entity Relations Diagram" and we need it to picture out or sketch applications architecture. Organization of tables, associations. Basically its very important to start off with an ERD diagram and then to develop the app based on this.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
