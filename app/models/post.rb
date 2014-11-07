@@ -8,4 +8,16 @@ class Post < ActiveRecord::Base
   validates :title, :url, :description, presence: true
   validates :title, uniqueness: { case_sensitive: false }
 
+  def total_votes
+    up_vote - down_vote
+  end
+
+  def up_vote
+    self.votes.where(vote: true).size
+  end
+
+  def down_vote
+    self.votes.where(vote: false).size
+  end
+
 end
