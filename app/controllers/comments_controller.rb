@@ -14,7 +14,6 @@ class CommentsController < ApplicationController
     end
   end
 
-
   def vote
     comment = Comment.find(params[:id])
     vote = Vote.create(vote: params[:vote], creator: current_user, voteable: comment)

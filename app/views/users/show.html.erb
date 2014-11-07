@@ -19,5 +19,4 @@
   <%= render partial: 'comments/comment', collection: @user.comments.sort_by { |x| x.total_votes }.reverse, locals: { show_post: true } %>
 <% end %>
 
-<%#= render 'commments/comment' %>
 
