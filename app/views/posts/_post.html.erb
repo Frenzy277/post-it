@@ -4,11 +4,11 @@
       <%= link_to vote_post_path(post, vote: true), method: 'post' do %>
         <i class='icon-thumbs-up'></i>
       <% end %>
+      <br>
     <% end %>
-    <br>
     <%= "#{post.total_votes} votes" %>
-    <br>
     <% if logged_in? %>
+      <br>
       <%= link_to vote_post_path(post, vote: false), method: 'post' do %>
         <i class='icon-thumbs-down'></i>
       <% end %>
