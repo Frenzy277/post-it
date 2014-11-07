@@ -16,7 +16,7 @@
 <% if params[:tab].nil? %>
   <%= render partial: '/posts/post', collection: @user.posts %>
 <% elsif params[:tab] == 'comments' %>
-  <%= render partial: 'comments/comment', collection: @user.comments.sort_by { |x| x.total_votes }.reverse, locals: { show_post: true } %>
+  <%= render partial: 'comments/comment', collection: @user.comments, locals: { show_post: true } %>
 <% end %>
 
 
