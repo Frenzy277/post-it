@@ -2,15 +2,17 @@
 <div class='row'>
   <div class="span0 well text-center">
     <% if logged_in? %>
-      <%= link_to vote_post_comment_path(comment.post, comment, vote: true), method: 'post' do %>
+      <%= link_to vote_post_comment_path(comment.post, comment, vote: true), method: 'post', remote: true do %>
         <i class='icon-thumbs-up'></i>
       <% end %>
       <br>
     <% end %>
-    <%= "#{comment.total_votes} votes" %>
+    <div id="comment_<%= comment.id %>">
+      <%= "#{comment.total_votes} votes" %>
+    </div>
     <% if logged_in? %>
-      <br>
-      <%= link_to vote_post_comment_path(comment.post, comment, vote: false), method: 'post' do %>
+      <!-- <br> -->
+      <%= link_to vote_post_comment_path(comment.post, comment, vote: false), method: 'post', remote: true  do %>
         <i class='icon-thumbs-down'></i>
       <% end %>
     <% end %>
