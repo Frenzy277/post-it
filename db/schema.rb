@@ -11,13 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141106212413) do
+ActiveRecord::Schema.define(version: 20141108135335) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
+
+  add_index "categories", ["slug"], name: "index_categories_on_slug"
 
   create_table "comments", force: true do |t|
     t.text     "body"
@@ -41,14 +44,20 @@ ActiveRecord::Schema.define(version: 20141106212413) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "slug"
   end
+
+  add_index "posts", ["slug"], name: "index_posts_on_slug"
 
   create_table "users", force: true do |t|
     t.string   "username"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_digest"
+    t.string   "slug"
   end
+
+  add_index "users", ["slug"], name: "index_users_on_slug"
 
   create_table "votes", force: true do |t|
     t.boolean  "vote"

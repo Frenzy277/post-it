@@ -8,6 +8,8 @@ class Post < ActiveRecord::Base
   validates :title, :url, :description, presence: true
   validates :title, uniqueness: { case_sensitive: false }
 
+  before_save :generate_slug
+
   def total_votes
     up_vote - down_vote
   end
@@ -18,6 +20,14 @@ class Post < ActiveRecord::Base
 
   def down_vote
     self.votes.where(vote: false).size
+  end
+
+  def generate_slug
+    self.slug = self.title.parameterize
+  end
+
+  def to_param
+    self.slug
   end
 
 end

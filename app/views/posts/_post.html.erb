@@ -6,7 +6,7 @@
       <% end %>
       <br>
     <% end %>
-    <div id='post_<%= post.id %>_votes'>
+    <div id='post_<%= post.slug %>_votes'>
       <%= "#{post.total_votes} votes" %>
     </div>
     <% if logged_in? %>
