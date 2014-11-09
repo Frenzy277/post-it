@@ -23,6 +23,7 @@ group :development do
   gem 'pry'
   gem 'sqlite3'
   gem 'hirb'
+  gem 'voteable-tom'
 end
 
 group :production do
