@@ -64,5 +64,10 @@ class PostsController < ApplicationController
     @post = Post.find_by(slug: params[:id])
   end
 
+  def require_creator
+    unless logged_in? && (current_user == @post.creator || admin?)
+      access_denied
+    end
+  end
 
 end

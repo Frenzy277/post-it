@@ -24,12 +24,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def require_creator
-    if (current_user != @post.creator) && !admin?
-      access_denied
-    end
-  end
-
   def require_admin
     access_denied if !admin?  
   end
