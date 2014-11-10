@@ -24,11 +24,19 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def require_admin
-    if !admin?
-      flash[:error] = "You can't do that"
-      redirect_to root_url
+  def require_creator
+    if (current_user != @post.creator) && !admin?
+      access_denied
     end
+  end
+
+  def require_admin
+    access_denied if !admin?  
+  end
+
+  def access_denied
+    flash[:error] = "Access denied!"
+    redirect_to root_url
   end
 
 end
