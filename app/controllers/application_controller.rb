@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  helper_method :current_user, :logged_in?
+  helper_method :current_user, :logged_in?, :admin?
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -13,10 +13,21 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
+  def admin?
+    logged_in? && current_user.admin
+  end
+
   def require_user
     if !logged_in?
       flash[:error] = "You have to log in!"
       redirect_to login_url
+    end
+  end
+
+  def require_admin
+    if !admin?
+      flash[:error] = "You can't do that"
+      redirect_to root_url
     end
   end
 

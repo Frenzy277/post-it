@@ -13,6 +13,8 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'sluggable-tom', '0.0.1', path: '/Users/tomas/desktop/Rails/Gems/sluggable-gem'
+gem 'voteable-tom', '0.0.1'
 
 group :doc do
   gem 'sdoc', require: false
@@ -23,7 +25,6 @@ group :development do
   gem 'pry'
   gem 'sqlite3'
   gem 'hirb'
-  gem 'voteable-tom'
 end
 
 group :production do
